@@ -26,14 +26,11 @@ if exists(':Bundle')
     "
     " repos on github
     Bundle 'Lokaltog/vim-easymotion'
-    "Bundle 'kchmck/vim-coffee-script'
     Bundle 'scrooloose/nerdtree.git'
     Bundle 'kien/ctrlp.vim'
     Bundle 'joonty/vim-phpqa.git'
-    Bundle 'joonty/vim-sauce.git'
     Bundle 'joonty/vdebug.git'
     Bundle 'joonty/vim-phpunitqf.git'
-    "Bundle 'joonty/vim-taggatron.git'
     Bundle "mattn/emmet-vim"
     Bundle 'tpope/vim-fugitive.git'
     Bundle 'tpope/vim-rails.git'
@@ -44,6 +41,9 @@ if exists(':Bundle')
     Bundle 'rking/ag.vim'
     Bundle 'othree/html5.vim.git'
     Bundle 'SirVer/ultisnips.git'
+    "Bundle 'kchmck/vim-coffee-script'
+    "Bundle 'joonty/vim-sauce.git'
+    "Bundle 'joonty/vim-taggatron.git'
 end
 "}}}
 
@@ -59,9 +59,6 @@ nnoremap Q <nop>
 
 " omnicomp
 inoremap <Leader>o <C-x><C-o>
-
-" call browser
-nnoremap <Leader>br :call Browser ()<CR>
 
 " set breakpoint
 nnoremap <Leader>v :Breakpoint<CR>
@@ -111,6 +108,8 @@ let g:SuperTabDefaultCompletionType = "<c-x><c-p>"
 
 " Vdebug options
 let g:vdebug_options = {"on_close":"detach"}
+" Set the codesniffer args
+let g:phpqa_codesniffer_args = "--standard=Zend"
 
 let g:syntastic_check_on_open=1
 let g:syntastic_enable_signs=1
@@ -127,6 +126,8 @@ let g:vdebug_features = {'max_depth':3}
 
 "Fugitive (Git) in status line
 set statusline=%{exists(\"*fugitive#statusline\")?\"branch:\ \".fugitive#statusline():\"\"}\ %F%m%r%h%w\ (%{&ff}){%Y}\ [%l,%v][%p%%]
+" always display status line
+set laststatus=2
 
 "file encodings
 set fileencodings=utf-8,gbk,ucs-born,cp936
@@ -136,6 +137,16 @@ set foldmethod=indent
 set shiftwidth=4
 set tabstop=4
 set expandtab
+"search highlight
+set hlsearch
+
 " Save a file that requires sudoing even when
 " you opened it as a normal user.
 command! Sw w !sudo tee % > /dev/null
+
+" backup to ~/.tmp 
+set backup 
+set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp 
+set backupskip=/tmp/*,/private/tmp/* 
+set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp 
+set writebackup
