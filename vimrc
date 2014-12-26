@@ -1,6 +1,4 @@
 filetype off                  " required!
-filetype plugin indent on     " required!
-runtime macros/matchit.vim
 
 " cd
 cd /var/www/service
@@ -46,6 +44,9 @@ if exists(':Bundle')
     "Bundle 'joonty/vim-taggatron.git'
 end
 "}}}
+
+filetype plugin indent on     " required!
+runtime macros/matchit.vim
 
 " Set font for GUI (e.g. GVim)
 if has("gui_running")
@@ -101,10 +102,6 @@ nnoremap <Leader>n :NERDTreeToggle<CR>
 let g:EasyMotion_leader_key = '<Space>'
 let g:NERDTreeMapHelp = "h"
 
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
 let g:ctrlp_working_path_mode = 'ra'
 
 " Tab completion - local
@@ -128,6 +125,10 @@ let g:syntastic_mode_map = { 'mode': 'active',
 let NERDTreeIgnore = ['\.pyc$','\.sock$']
 
 let g:vdebug_features = {'max_depth':3}
+
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 "}}}
 
 "Fugitive (Git) in status line
