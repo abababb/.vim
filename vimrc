@@ -101,6 +101,10 @@ nnoremap <Leader>n :NERDTreeToggle<CR>
 let g:EasyMotion_leader_key = '<Space>'
 let g:NERDTreeMapHelp = "h"
 
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
 let g:ctrlp_working_path_mode = 'ra'
 
 " Tab completion - local
@@ -110,9 +114,8 @@ let g:SuperTabDefaultCompletionType = "<c-x><c-p>"
 let g:vdebug_options = {"on_close":"detach"}
 " Set the codesniffer args
 let g:phpqa_codesniffer_args = "--standard=Zend"
-
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<C-j>"
+" Don't run messdetector on save (default = 1)
+let g:phpqa_messdetector_autorun = 0
 
 let g:syntastic_check_on_open=1
 let g:syntastic_enable_signs=1
@@ -142,6 +145,8 @@ set tabstop=4
 set expandtab
 "search highlight
 set hlsearch
+"line number
+set nu
 
 " Save a file that requires sudoing even when
 " you opened it as a normal user.
