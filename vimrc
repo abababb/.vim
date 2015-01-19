@@ -1,7 +1,7 @@
 filetype off                  " required!
 
 " cd
-cd /var/www/service
+cd /var/www/ucenter
 
 "<Leader> key is ,
 let mapleader=","
@@ -70,9 +70,13 @@ nnoremap <Leader>h :nohl<CR>
 " CtrlP
 nnoremap <Leader>t :CtrlP getcwd()<CR>
 nnoremap <Leader>b :CtrlPBuffer<CR>
+nnoremap <leader>f :CtrlPTag<cr>
 
 " execute php
 map <Leader>e :!php %<CR>
+
+" create tags
+map <Leader>. :!ctags -R --languages=php -f ./.git/tags `pwd`<CR>
 
 " edit hex
 map <Leader>x :%!xxd -g 1<CR>
