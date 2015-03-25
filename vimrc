@@ -1,7 +1,7 @@
 filetype off                  " required!
 
 " cd
-cd /var/www/ucenter
+cd /var/www/service
 
 "<Leader> key is ,
 let mapleader=","
@@ -106,6 +106,10 @@ nnoremap <Leader>n :NERDTreeToggle<CR>
 let g:EasyMotion_leader_key = '<Space>'
 let g:NERDTreeMapHelp = "h"
 
+"emmet
+let g:user_emmet_leader_key = '<c-e>'
+"let g:use_emmet_complete_tag = 1
+
 let g:ctrlp_working_path_mode = 'ra'
 
 " Tab completion - local
@@ -114,7 +118,7 @@ let g:SuperTabDefaultCompletionType = "<c-x><c-p>"
 " Vdebug options
 let g:vdebug_options = {"on_close":"detach"}
 " Set the codesniffer args
-let g:phpqa_codesniffer_args = "--standard=Zend"
+let g:phpqa_codesniffer_args = "--standard=PSR2"
 " Don't run messdetector on save (default = 1)
 let g:phpqa_messdetector_autorun = 0
 
@@ -152,6 +156,8 @@ set expandtab
 set hlsearch
 "line number
 set nu
+"hide toolbar
+set guioptions-=T
 
 " Save a file that requires sudoing even when
 " you opened it as a normal user.
