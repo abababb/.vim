@@ -1,7 +1,10 @@
 filetype off                  " required!
 
 " cd
-cd /var/www/service
+cd /Library/WebServer/Documents/service/
+
+"copy to clipboard in mac
+set clipboard=unnamed
 
 "<Leader> key is ,
 let mapleader=","
@@ -23,13 +26,14 @@ if exists(':Bundle')
     " My Bundles here:
     "
     " repos on github
+    Bundle 'Tagbar'
     Bundle 'Lokaltog/vim-easymotion'
     Bundle 'scrooloose/nerdtree.git'
     Bundle 'kien/ctrlp.vim'
     Bundle 'joonty/vim-phpqa.git'
     Bundle 'joonty/vdebug.git'
     Bundle 'joonty/vim-phpunitqf.git'
-    Bundle "mattn/emmet-vim"
+    Bundle 'mattn/emmet-vim'
     Bundle 'tpope/vim-fugitive.git'
     Bundle 'tpope/vim-rails.git'
     Bundle 'tpope/vim-markdown.git'
@@ -50,9 +54,10 @@ runtime macros/matchit.vim
 
 " Set font for GUI (e.g. GVim)
 if has("gui_running")
-    set guifont=Liberation\ Mono\ 14
-    colorscheme rootwater
+    set guifont=Letter\ Gothic\ Std:h22
 endif
+syntax enable
+colorscheme jc
 
 "{{{ Key Maps
 " Stop that damn ex mode
@@ -74,6 +79,12 @@ nnoremap <leader>f :CtrlPTag<cr>
 
 " execute php
 map <Leader>e :!php %<CR>
+
+" change to current file directory
+map <Leader>w :cd %:h<CR>
+
+" phpunit
+map <Leader>u :Test 
 
 " create tags
 map <Leader>. :!ctags -R --languages=php -f ./.git/tags `pwd`<CR>
@@ -100,6 +111,7 @@ imap jj <Esc>
 
 " Tree of nerd
 nnoremap <Leader>n :NERDTreeToggle<CR>
+nnoremap <Leader>r :TagbarToggle<CR>
 "}}}
 
 "{{{ Plugin Settings
@@ -128,7 +140,7 @@ let g:syntastic_enable_balloons = 1
 let g:syntastic_auto_loc_list=1
 let g:syntastic_mode_map = { 'mode': 'active',
         \                    'active_filetypes' : [],
-        \                    'passive_filetypes' : ['php'] }
+        \                    'passive_filetypes' : ['php', 'html'] }
 
 let NERDTreeIgnore = ['\.pyc$','\.sock$']
 
