@@ -43,6 +43,7 @@ if exists(':Bundle')
     Bundle 'rking/ag.vim'
     Bundle 'othree/html5.vim.git'
     Bundle 'SirVer/ultisnips.git'
+    Bundle 'rizzatti/dash.vim'
     "Bundle 'kchmck/vim-coffee-script'
     "Bundle 'joonty/vim-sauce.git'
     "Bundle 'joonty/vim-taggatron.git'
