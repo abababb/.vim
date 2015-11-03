@@ -1,7 +1,7 @@
 filetype off                  " required!
 
 " cd
-cd /Library/WebServer/Documents/service/
+cd /Library/WebServer/Documents/xiechenew
 
 "copy to clipboard in mac
 set clipboard=unnamed
@@ -26,6 +26,7 @@ if exists(':Bundle')
     " My Bundles here:
     "
     " repos on github
+    Bundle 'Jinja'
     Bundle 'Tagbar'
     Bundle 'Lokaltog/vim-easymotion'
     Bundle 'scrooloose/nerdtree.git'
@@ -182,3 +183,6 @@ set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set backupskip=/tmp/*,/private/tmp/* 
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp 
 set writebackup
+
+" twig syntax highlighting
+au BufRead,BufNewFile *.twig set filetype=jinja
