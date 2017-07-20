@@ -1,7 +1,11 @@
+set nocompatible
 filetype off                  " required!
 
+let html_root = "~/xieche-2.0/src/AppBundle"
+let garage_root = "~/xieche-2.0/src/Xc/GarageBundle"
+
 " cd
-cd /Library/WebServer/Documents/xiechenew
+execute "cd ".html_root
 
 "copy to clipboard in mac
 set clipboard=unnamed
@@ -10,45 +14,41 @@ set clipboard=unnamed
 let mapleader=","
 
 " Vundle init
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim/
 
 " Require Vundle
-try
-    call vundle#rc()
-catch
-    echohl Error | echo "Vundle is not installed. Run 'cd ~/.vim/ && git submodule init && git submodule update'" | echohl None
-endtry
+call vundle#begin()
 
 "{{{ Vundle Bundles!
-if exists(':Bundle')
-    Bundle 'gmarik/vundle'
+    Plugin 'VundleVim/Vundle.vim'
 
     " My Bundles here:
     "
     " repos on github
-    Bundle 'Jinja'
-    Bundle 'Tagbar'
-    Bundle 'Lokaltog/vim-easymotion'
-    Bundle 'scrooloose/nerdtree.git'
-    Bundle 'kien/ctrlp.vim'
-    Bundle 'joonty/vim-phpqa.git'
-    Bundle 'joonty/vdebug.git'
-    Bundle 'joonty/vim-phpunitqf.git'
-    Bundle 'mattn/emmet-vim'
-    Bundle 'tpope/vim-fugitive.git'
-    Bundle 'tpope/vim-rails.git'
-    Bundle 'tpope/vim-markdown.git'
-    Bundle 'ervandew/supertab.git'
-    Bundle 'scrooloose/syntastic.git'
-    Bundle 'joonty/vim-tork.git'
-    Bundle 'rking/ag.vim'
-    Bundle 'othree/html5.vim.git'
-    Bundle 'SirVer/ultisnips.git'
-    Bundle 'rizzatti/dash.vim'
-    "Bundle 'kchmck/vim-coffee-script'
-    "Bundle 'joonty/vim-sauce.git'
-    "Bundle 'joonty/vim-taggatron.git'
-end
+    Plugin 'Jinja'
+    Plugin 'Tagbar'
+    Plugin 'Lokaltog/vim-easymotion'
+    Plugin 'scrooloose/nerdtree.git'
+    Plugin 'kien/ctrlp.vim'
+    Plugin 'joonty/vim-phpqa.git'
+    Plugin 'joonty/vdebug.git'
+    Plugin 'joonty/vim-phpunitqf.git'
+    Plugin 'mattn/emmet-vim'
+    Plugin 'tpope/vim-fugitive.git'
+    Plugin 'tpope/vim-rails.git'
+    Plugin 'tpope/vim-markdown.git'
+    Plugin 'ervandew/supertab.git'
+    Plugin 'scrooloose/syntastic.git'
+    Plugin 'joonty/vim-tork.git'
+    Plugin 'rking/ag.vim'
+    Plugin 'othree/html5.vim.git'
+    Plugin 'SirVer/ultisnips.git'
+    Plugin 'rizzatti/dash.vim'
+    "Plugin 'kchmck/vim-coffee-script'
+    "Plugin 'joonty/vim-sauce.git'
+    "Plugin 'joonty/vim-taggatron.git'
+    
+call vundle#end()
 "}}}
 
 filetype plugin indent on     " required!
@@ -56,7 +56,7 @@ runtime macros/matchit.vim
 
 " Set font for GUI (e.g. GVim)
 if has("gui_running")
-    set guifont=Letter\ Gothic\ Std:h22
+    set guifont=Monaco:h14
 endif
 syntax enable
 colorscheme jc
@@ -81,12 +81,19 @@ nnoremap <leader>f :CtrlPTag<cr>
 
 " execute php
 map <Leader>e :!php %<CR>
+map <Leader>el :.!php %<CR>
 
 " change to current file directory
 map <Leader>w :cd %:h<CR>
+execute "map <Leader>wr :cd ".html_root."<CR>"
+execute "map <Leader>wg :cd ".garage_root."<CR>"
+map <Leader>ep :e ../../app/config/parameters.yml<CR>
 
 " phpunit
 map <Leader>u :Test 
+let g:phpunit_cmd = "/Users/xjz/.composer/vendor/bin/phpunit"
+let g:phpunit_args = "-c /Users/xjz/xieche-2.0/app"
+let g:phpunit_args_append = "%"
 
 " create tags
 map <Leader>. :!ctags -R --languages=php -f ./.git/tags `pwd`<CR>
@@ -130,7 +137,7 @@ let g:ctrlp_working_path_mode = 'ra'
 let g:SuperTabDefaultCompletionType = "<c-x><c-p>"
 
 " Vdebug options
-let g:vdebug_options = {"on_close":"detach"}
+let g:vdebug_options = {"on_close":"detach", 'port': 9001}
 " Set the codesniffer args
 let g:phpqa_codesniffer_args = "--standard=PSR2"
 " Don't run messdetector on save (default = 1)

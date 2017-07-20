@@ -3,6 +3,8 @@ snippet php
 	${1}
 snippet vd
 	var_dump(${1});exit;
+snippet ve
+	var_export(${1});exit;
 snippet ec
 	echo "${1:string}"${2};
 snippet inc
@@ -103,3 +105,39 @@ snippet try
 	} catch (\Exception $e) {
 		${2}
 	}
+# doctrine
+snippet qb
+	$qb = $this->createQueryBuilder('${1}');
+	$${2:result} = $qb
+		->where(
+			${3}
+		)
+		->setParameters(
+			array(
+				'' => ,
+			)
+		)
+		->join('', '')
+		->groupBy('')
+		->orderBy('', '')
+		->getQuery()
+		->getResult()
+		;
+snippet andX
+	$qb->expr()->andX(
+		${1}
+	)
+snippet orX
+	$qb->expr()->orX(
+		${1}
+	)
+snippet eq
+	$qb->expr()->eq('${1}', '${2}')
+# datetime
+snippet ymd
+	->format('Y-m-d')
+snippet his
+	->format('Y-m-d H:i:s')
+
+snippet opc
+	options={"comment"="${1}"}
