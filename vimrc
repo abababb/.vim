@@ -147,9 +147,11 @@ let g:syntastic_check_on_open=1
 let g:syntastic_enable_signs=1
 let g:syntastic_enable_balloons = 1
 let g:syntastic_auto_loc_list=1
+let g:syntastic_javascript_checkers=['eslint']
+let g:syntastic_javascript_eslint_exe='/Users/xjz/mongo/project/node_modules/.bin/eslint'
 let g:syntastic_mode_map = { 'mode': 'active',
         \                    'active_filetypes' : [],
-        \                    'passive_filetypes' : ['php', 'html'] }
+        \                    'passive_filetypes' : ['php', 'html', 'js'] }
 
 let NERDTreeIgnore = ['\.pyc$','\.sock$']
 
@@ -173,6 +175,9 @@ set foldmethod=indent
 set shiftwidth=4
 set tabstop=4
 set expandtab
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2                                                   
+autocmd FileType html setlocal shiftwidth=2 tabstop=2
+
 "search highlight
 set hlsearch
 "line number
