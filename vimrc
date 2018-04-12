@@ -1,8 +1,8 @@
 set nocompatible
 filetype off                  " required!
 
-let html_root = "~/xieche-2.0/src/AppBundle"
-let garage_root = "~/xieche-2.0/src/Xc/GarageBundle"
+let html_root = "~/xieche-2.1/src/AppBundle"
+let garage_root = "~/xieche-2.1/src/Xc/GarageBundle"
 
 " cd
 execute "cd ".html_root
@@ -40,10 +40,12 @@ call vundle#begin()
     Plugin 'ervandew/supertab.git'
     Plugin 'scrooloose/syntastic.git'
     Plugin 'joonty/vim-tork.git'
-    Plugin 'rking/ag.vim'
+    Plugin 'mileszs/ack.vim'
     Plugin 'othree/html5.vim.git'
     Plugin 'SirVer/ultisnips.git'
     Plugin 'rizzatti/dash.vim'
+    Plugin 'pangloss/vim-javascript'
+    Plugin 'mxw/vim-jsx'
     "Plugin 'kchmck/vim-coffee-script'
     "Plugin 'joonty/vim-sauce.git'
     "Plugin 'joonty/vim-taggatron.git'
@@ -60,6 +62,12 @@ if has("gui_running")
 endif
 syntax enable
 colorscheme jc
+
+
+" ag
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
 
 "{{{ Key Maps
 " Stop that damn ex mode
@@ -152,6 +160,9 @@ let g:syntastic_javascript_eslint_exe='/Users/xjz/mongo/project/node_modules/.bi
 let g:syntastic_mode_map = { 'mode': 'active',
         \                    'active_filetypes' : [],
         \                    'passive_filetypes' : ['php', 'html', 'js'] }
+
+" reactjs
+let g:jsx_ext_required = 0
 
 let NERDTreeIgnore = ['\.pyc$','\.sock$']
 
