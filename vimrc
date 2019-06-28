@@ -30,25 +30,20 @@ call vundle#begin()
     Plugin 'Lokaltog/vim-easymotion'
     Plugin 'scrooloose/nerdtree.git'
     Plugin 'kien/ctrlp.vim'
-    Plugin 'joonty/vim-phpqa.git'
     Plugin 'joonty/vdebug.git'
     Plugin 'joonty/vim-phpunitqf.git'
     Plugin 'mattn/emmet-vim'
     Plugin 'tpope/vim-fugitive.git'
     Plugin 'tpope/vim-rails.git'
-    Plugin 'tpope/vim-markdown.git'
     Plugin 'ervandew/supertab.git'
     Plugin 'scrooloose/syntastic.git'
-    Plugin 'joonty/vim-tork.git'
     Plugin 'mileszs/ack.vim'
-    Plugin 'othree/html5.vim.git'
-    Plugin 'SirVer/ultisnips.git'
-    Plugin 'rizzatti/dash.vim'
+    Plugin 'SirVer/ultisnips'
     Plugin 'pangloss/vim-javascript'
     Plugin 'mxw/vim-jsx'
-    "Plugin 'kchmck/vim-coffee-script'
-    "Plugin 'joonty/vim-sauce.git'
-    "Plugin 'joonty/vim-taggatron.git'
+    Plugin 'posva/vim-vue'
+    " mac only
+    Plugin 'rizzatti/dash.vim'
     
 call vundle#end()
 "}}}
@@ -145,21 +140,7 @@ let g:ctrlp_working_path_mode = 'ra'
 let g:SuperTabDefaultCompletionType = "<c-x><c-p>"
 
 " Vdebug options
-let g:vdebug_options = {"on_close":"detach", 'port': 9001}
-" Set the codesniffer args
-let g:phpqa_codesniffer_args = "--standard=PSR2"
-" Don't run messdetector on save (default = 1)
-let g:phpqa_messdetector_autorun = 0
-
-let g:syntastic_check_on_open=1
-let g:syntastic_enable_signs=1
-let g:syntastic_enable_balloons = 1
-let g:syntastic_auto_loc_list=1
-let g:syntastic_javascript_checkers=['eslint']
-let g:syntastic_javascript_eslint_exe='/Users/xjz/mongo/project/node_modules/.bin/eslint'
-let g:syntastic_mode_map = { 'mode': 'active',
-        \                    'active_filetypes' : [],
-        \                    'passive_filetypes' : ['php', 'html', 'js'] }
+let g:vdebug_options = {"on_close":"detach", 'port': 9002}
 
 " reactjs
 let g:jsx_ext_required = 0
@@ -178,6 +159,22 @@ set statusline=%{exists(\"*fugitive#statusline\")?\"branch:\ \".fugitive#statusl
 " always display status line
 set laststatus=2
 
+" syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exe= '/Users/xjz/mongo/project/node_modules/.bin/eslint'
+let g:syntastic_php_checkers = ['php', 'phpcs']
+let g:syntastic_php_phpcs_args = '--standard=PSR2 -n' 
+let g:syntastic_mode_map = { 'mode': 'active',
+        \                    'active_filetypes' : ['php'],
+        \                    'passive_filetypes' : ['html', 'javascript'] }
+
 "file encodings
 set fileencodings=utf-8,gbk,ucs-born,cp936
 " set fold method
@@ -186,7 +183,8 @@ set foldmethod=indent
 set shiftwidth=4
 set tabstop=4
 set expandtab
-autocmd FileType javascript setlocal shiftwidth=2 tabstop=2                                                   
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
+autocmd FileType vue setlocal shiftwidth=2 tabstop=2
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
 
 "search highlight
